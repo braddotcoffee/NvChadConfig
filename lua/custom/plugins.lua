@@ -56,7 +56,14 @@ local plugins = {
     config = function()
       require("nvim-surround").setup({})
     end
-  }
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    lazy = false,
+    config = function()
+      dofile(vim.g.base46_cache .. "rainbowdelimiters")
+    end
+  },
 }
 
 return plugins
