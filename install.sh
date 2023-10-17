@@ -9,8 +9,8 @@ YELLOW="\e[33m"
 ENDCOLOR="\e[0m"
 
 if [ -L $INSTALL_PATH ] || [ -e $INSTALL_PATH ]; then
-  echo -e "${YELLOW}Configuration exists. Would you like to overwrite?${ENDCOLOR}"
-  read -p "$(echo -e ${RED}"Overwrite $INSTALL_PATH [Yy] "${ENDCOLOR})" -n 1 -r
+  printf  "${YELLOW}Configuration exists. Would you like to overwrite?${ENDCOLOR}\n"
+  read -p "$(printf ${RED}"Overwrite $INSTALL_PATH [Yy] "${ENDCOLOR})" -n 1 -r
   echo ""
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -22,14 +22,14 @@ if [ -L $INSTALL_PATH ] || [ -e $INSTALL_PATH ]; then
   fi
 fi
 
-echo -e "${GREEN}Installing symlink to $INSTALL_PATH${ENDCOLOR}"
+printf "${GREEN}Installing symlink to $INSTALL_PATH${ENDCOLOR}\n"
 ln -s $CONFIG_PATH $INSTALL_PATH
 RESULT=$?
 
 if [ $RESULT -eq 0 ] && [ -e $INSTALL_PATH ]; then
-  echo -e "${GREEN}Successfully installed NvChad config!${ENDCOLOR}"
+  printf "${GREEN}Successfully installed NvChad config!${ENDCOLOR}\n"
   exit 0
 else
-  echo -e "${RED}Failed to install NvChad config - please try again.${ENDCOLOR}"
+  printf "${RED}Failed to install NvChad config - please try again.${ENDCOLOR}\n"
   exit 1
 fi
